@@ -1,7 +1,6 @@
 package com.clientes.apirest.resources;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,14 +11,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.clientes.apirest.repository.ClienteRepository;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-import com.clientes.apirest.models.Cliente;
 
+import com.clientes.apirest.models.Cliente;
 @RestController
 @RequestMapping(value="/api")
 @Api(value="API REST")
@@ -35,16 +32,13 @@ public class ClienteResource {
 		return clienteRepository.findAll();
 	}
 	
-	/* Busca por id. *Alterar para nome e CPF */	
-	@GetMapping ("/cliente/{cpf}")
-	@ApiOperation(value="Busca por cpf")
-	public Cliente listaClienteUnico(@PathVariable(value="cpf")long cpf){
-		return clienteRepository.findById(cpf);
+	/* Busca por id. */	
+	@GetMapping ("/cliente/{id}")
+	@ApiOperation(value="Busca por id")
+	public Cliente listaClienteUnico(@PathVariable(value="id")long id){
+		return clienteRepository.findById(id);
 	}
-	
 		
-	
-	
 	@PostMapping("/cliente")
 	@ApiOperation(value="Salva Cliente")
 	public Cliente salvaCliente(@RequestBody Cliente cliente) {
