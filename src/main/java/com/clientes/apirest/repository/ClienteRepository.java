@@ -16,9 +16,11 @@ public interface ClienteRepository extends JpaRepository <Cliente, Long> {
 	
 	Page<Cliente> findAll (Pageable pageable);
 
-	Page<Cliente> findById (long cpf, Pageable pageable);
+	Page<Cliente> findById (long id, Pageable pageable);
 	
-	Page<Cliente> findByNome(String nome, Pageable pageable);
+	Page<Cliente> findByNomeIgnoreCase(String nome, Pageable pageable);
+	
+	Page<Cliente> findByCpf(long cpf, Pageable pageable);
 	
 
 }

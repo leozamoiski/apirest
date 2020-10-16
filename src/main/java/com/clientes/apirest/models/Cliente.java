@@ -1,7 +1,7 @@
 package com.clientes.apirest.models;
 
 import java.io.Serializable;
-
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,19 +11,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name="TB_CLIENTE")
 
+
+
 public class Cliente implements Serializable {
 	
 	private static final long serialVersionUID= 1L;
 	
 	@Id
-	@GeneratedValue (strategy=GenerationType.AUTO)
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	
 	private long id;
 	private String nome;
-	private double idade;
 	private long cpf;
-	private long data_nascimento;
-	
+	private int idade;
+	private LocalDate data_nascimento;	
 	
 	public long getId() {
 		return id;
@@ -37,24 +38,23 @@ public class Cliente implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public double getIdade() {
-		return idade;
-	}
-	public void setIdade(double idade) {
-		this.idade = idade;
-	}
 	public long getCpf() {
 		return cpf;
 	}
 	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
-	public long getData_nascimento() {
+	public int getIdade() {
+		return idade;
+	}
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+	public LocalDate getNascimento() {
 		return data_nascimento;
 	}
-	public void setData_nascimento(long data_nascimento) {
+	public void setNascimento(LocalDate data_nascimento) {
 		this.data_nascimento = data_nascimento;
-	}
-	
+	}	
 
 }

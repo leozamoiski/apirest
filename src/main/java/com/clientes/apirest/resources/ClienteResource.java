@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.clientes.apirest.repository.ClienteRepository;
 import io.swagger.annotations.Api;
@@ -21,38 +20,37 @@ import io.swagger.annotations.ApiOperation;
 import com.clientes.apirest.models.Cliente;
 
 @RestController
-@RequestMapping("/api")
 @Api(value="API REST")
 @CrossOrigin(origins="*")
+@RequestMapping("/api")
 public class ClienteResource {
 
 	@Autowired
 	ClienteRepository clienteRepository;
 	
-	@GetMapping ("/cliente")
+	@GetMapping("/cliente")
 	@ApiOperation(value="Retorna Cliente")
 	public Page<Cliente> listaCliente(Pageable pageable){
 		return clienteRepository.findAll(pageable);
 	}
 	
 	/* Busca por id. */	
-	@GetMapping ("/cliente/{id}")
-	@ApiOperation(value="Busca por id")
+	@GetMapping ("/cliente/id/{id}")
+	@ApiOperation(value="Busca por ID")
 	public Page<Cliente> listaClienteUnico(@PathVariable(value="id")long id, Pageable pageable){
 		return clienteRepository.findById(id, pageable);
 	}
 	
-    @GetMapping
+    @GetMapping("/cliente/nome/{nome}")
     @ApiOperation(value="Busca por Nome")
-    public Page<Cliente> findCustomersByNome(
-                               @RequestParam("nome") String nome,
-                               Pageable pageable) {
- 
-        if (nome == null) {
-            return clienteRepository.findAll(pageable);
-        } else {
-            return clienteRepository.findByNome(nome, pageable);
-        }
+    public Page<Cliente> findClienteByNome(@PathVariable(value="nome") String nome, Pageable pageable){
+    	return clienteRepository.findByNomeIgnoreCase(nome, pageable);
+    }
+    
+    @GetMapping("/cliente/cpf/{cpf}")
+    @ApiOperation(value="Busca por CPF")
+    public Page<Cliente> findClienteByNome(@PathVariable(value="cpf") long cpf, Pageable pageable){
+    	return clienteRepository.findByCpf(cpf, pageable);
     }
 	
 	@PostMapping("/cliente")
