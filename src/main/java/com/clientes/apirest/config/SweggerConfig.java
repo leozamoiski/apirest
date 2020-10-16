@@ -31,7 +31,7 @@ public class SweggerConfig {
 	    private ApiInfo apiInfo() {
 	        return new ApiInfoBuilder()
 	                .title("Java Spring Boot")
-	                .description("Léo")
+	                .description("Léo, https://github.com/leozamoiski/apirest")	                
 	                .build();
 	        
 	        
